@@ -5,6 +5,6 @@ node{
   stage('Compile Package'){
     //Get Maven Home path
     def mvnHome = tool name: 'JenkinsMaven', type: 'maven'
-    sh "${mvnHome}/bin/mvn package"
+    bat "${mvnHome}/bin/mvn package"
   }
 }
