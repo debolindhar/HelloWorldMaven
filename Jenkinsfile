@@ -8,10 +8,11 @@ node{
     bat "${mvnHome}/bin/mvn package"
   }
   stage('SonarQube analysis'){
-    def scannerHome = tool 'SonarScanner 4.0';
-    withSonarQubeEnv('Sonar1') { // If you have configured more than one global server connection, you can specify its name
-      bat "${scannerHome}/bin/sonar-scanner"
-  } 
+    def mvnHome = tool name: 'JenkinsMaven', type: 'maven'
+    withSonarQubeEnv('Sonar1') {
+      sh "${mvnHome}/bin/sonar-scanner"
+    }
+  }
   stage('Publish to Nexus'){
     //Create Package ID
     def timeStamp = Calendar.getInstance().getTime().format('YYYYMMdd-hhmmss',TimeZone.getTimeZone('CST'))
