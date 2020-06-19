@@ -8,9 +8,9 @@ node{
     bat "${mvnHome}/bin/mvn package"
   }
   stage('SonarQube analysis'){
-    def mvnHome = tool name: 'JenkinsMaven', type: 'maven'
+    def scannerHome = tool 'SonarScanner 4.0';
     withSonarQubeEnv('Sonar1') {
-      sh "${mvnHome}/bin/sonar-scanner"
+      sh "${scannerHome}/bin/sonar-scanner"
     }
   }
   stage('Publish to Nexus'){
