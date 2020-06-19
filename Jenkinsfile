@@ -10,7 +10,7 @@ node{
   stage('SonarQube analysis'){
     def scannerHome = tool 'SonarScanner 4.0';
     withSonarQubeEnv('Sonar1') { // If you have configured more than one global server connection, you can specify its name
-      sh "${scannerHome}/bin/sonar-scanner"
+      bat "${scannerHome}/bin/sonar-scanner"
   } 
   stage('Publish to Nexus'){
     //Create Package ID
