@@ -8,7 +8,7 @@ node{
     bat "${mvnHome}/bin/mvn package"
   }
   stage('SonarQube analysis'){
-    def scannerHome = tool 'SonarScanner 4.0';
+    def scannerHome = tool 'SonarScanner';
     withSonarQubeEnv('Sonar1') {
       sh "${scannerHome}/bin/sonar-scanner"
     }
